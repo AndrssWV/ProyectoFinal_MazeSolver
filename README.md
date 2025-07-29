@@ -15,9 +15,9 @@
 6. [Recomendaciones](#6-recomendaciones)  
 
 ---
-## 1. Carátula  
+## 1. Carátula
+![alt text](image.png)
 
-   ![alt text](image.png)
 **Universidad:** Universidad Politecnica Salesiana  
 **Asignatura:** Estructura de Datos  
 **Estudiante:** Kelly Valeria Guaman Leon,
@@ -40,9 +40,8 @@
 ---
 ## 3. Marco Teórico  
 
-### Diagrama UML  
-
-![alt text](image-10.png)
+### Diagrama UML
+![alt text](image-1.png)
 
 El sistema está dividido en:
 - **Solver:** contiene las implementaciones de cada algoritmo.
@@ -116,13 +115,14 @@ El flujo del programa es el siguiente:
 7. **Salir**: El usuario puede cerrar el programa desde el menú.
 ---
 ## Resultados
-![alt text](image-1.png)
 ![alt text](image-2.png)
 ![alt text](image-3.png)
+![alt text](image-4.png)
+![alt text](image-5.png)
 ![alt text](image-6.png)
 ![alt text](image-7.png)
 ![alt text](image-8.png)
-![alt text](image-9.png)
+
 ## Conclusiones
 
 - El proyecto muestra la manera de representar y manejar un grafo no dirigido mediante el uso de estructuras de datos elementales   en Java, tales como listas y mapas.
