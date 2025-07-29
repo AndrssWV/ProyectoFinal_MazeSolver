@@ -38,7 +38,7 @@ import org.jfree.data.category.DefaultCategoryDataset;
  * - Botones para limpiar resultados y generar gráficas
  * - Diálogo secundario para mostrar gráficas de líneas
  * 
- * @author [Valeria Guamán, Jamileth Kumpanam, Sebastián López, Andrés Villalta]
+ * @author [Valeria Guamán, Jamileth Kumpanam, Sebastián López, Andrés Villalta ]
  * @version 1.0
  */
 public class ResultadosDialog extends JDialog {
