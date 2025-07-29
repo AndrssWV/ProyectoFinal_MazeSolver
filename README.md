@@ -1,137 +1,143 @@
-# Proyecto Final – Estructura de Datos: Resolución de Laberintos con Búsqueda y Optimización
+#  Proyecto Final – Estructura de Datos  
+## Explorador de Laberintos con Algoritmos de Búsqueda  
+---
+## Índice  
 
-Este proyecto implementa distintas estrategias algorítmicas para la resolución de laberintos, aplicando estructuras de datos, patrones de diseño y técnicas de programación orientada a objetos. El enfoque principal es comparar diversos algoritmos de búsqueda en un entorno visual basado en Java y Swing.
+1. [Carátula](#1-carátula)  
+2. [Objetivos](#2-objetivos)  
+3. [Marco Teórico](#3-marco-teórico)  
+   - [Diagrama UML](#diagrama-uml)  
+   - [Estructura del Proyecto](#estructura-del-proyecto)  
+   - [Algoritmos Implementados](#algoritmos-implementados) 
+   - [Como funciona el proyecto](#como-funciona-el-proyecto) 
+4. [Resultados](#4-resultados)  
+5. [Conclusiones](#5-conclusiones)  
+6. [Recomendaciones](#6-recomendaciones)  
+
+---
+## 1. Carátula  
+
+   ![alt text](image.png)
+**Universidad:** Universidad Politecnica Salesiana  
+**Asignatura:** Estructura de Datos  
+**Estudiante:** Kelly Valeria Guaman Leon,
+                Jamileth Estefania Kumpanam Segarra,
+                Juan Sebastian Lopez Condo,
+                Emilio Andres Villalta Pardo
+**Correo institucional:** kguamanl3@est.ups.edu.ec
+                          jkumpanam@est.ups.edu.ec
+                          jlopezc34@est.ups.edu.ec
+                          evillaltap@est.ups.edu.ec
 
 
 ---
+## 2. Objetivos  
+- Entender y utilizar métodos de búsqueda en configuraciones de laberintos.
+- Desarrollar habilidades en la visualización y análisis de trayectorias óptimas. 
+- Crear una interfaz gráfica dinámica con Java Swing.
+- Evaluar de manera visual la eficacia de cada método.
 
-## Estructura del Proyecto (MVC + DAO)
+---
+## 3. Marco Teórico  
 
-```
+### Diagrama UML  
+
+![alt text](image-10.png)
+
+El sistema está dividido en:
+- **Solver:** contiene las implementaciones de cada algoritmo.
+- **Modelo:** estructuras como `Cell` y `CellState`.
+- **Vista:** interfaz gráfica (`MazeFrame.java`) que muestra el laberinto.
+- **Controlador:** maneja la interacción y coordinación (`MazeController.java`).
+
+---
+
+### Estructura del Proyecto  
+
 src/
-├── MazeApp.java                  # Punto de entrada principal
-├── controllers/                 # Controlador general de interacción entre vista y modelo
+├── MazeApp.java
+├── controllers/
 │   └── MazeController.java
-├── dao/                        # Interfaces de acceso a datos
-│   ├── AlgorithmResultDAO.java
-│   └── daoImpl/                # Implementaciones concretas de DAO
-│       └── AlgorithmResultDAOFile.java
-├── models/                     # Clases de datos y modelos lógicos
-│   ├── AlgorithmResult.java
+├── models/
 │   ├── Cell.java
 │   ├── CellState.java
 │   └── SolveResults.java
-├── resources/                  # (Reservado para futuros assets)
-├── solver/                     # Interfaces de algoritmos de resolución
+    └── SolveResults.java
+├── solver/
 │   ├── MazeSolver.java
-│   └── solverImpl/             # Implementaciones de algoritmos
+│   └── solverImpl/
 │       ├── MazeSolverBFS.java
 │       ├── MazeSolverDFS.java
 │       ├── MazeSolverRecursivo.java
 │       ├── MazeSolverRecursivoCompleto.java
 │       └── MazeSolverRecursivoCompletoBT.java
-└── views/                      # Interfaz gráfica
-    ├── MazeFrame.java
-    ├── MazePanel.java
-    └── ResultadosDialog.java   # Tabla y gráfica de resultados
-```
+└── views/
+    └── MazeFrame.java
+---
+##  Algoritmos Implementados
 
+- **DFS (Depth First Search):**  
+  Búsqueda en profundidad. Explora lo más lejos posible en cada rama antes de retroceder.  
+  *No garantiza encontrar el camino más corto.*
+
+- **BFS (Breadth First Search):**  
+  Búsqueda en anchura. Explora todos los nodos vecinos antes de pasar al siguiente nivel.  
+  *Encuentra la ruta más corta (en número de aristas) en grafos no ponderados.*
+
+- **Recursivo Simple:**  
+  Implementación básica recursiva que encuentra una salida válida sin optimización.
+
+- **Recursivo Completo:**  
+  Explora todas las rutas posibles entre un nodo de origen y uno de destino.  
+  *Útil para obtener todas las soluciones posibles, aunque no es eficiente.*
+
+- **Recursivo Backtracking:**  
+  Técnica que prueba caminos y retrocede si detecta que un camino no lleva a la solución.  
+  *Eficiente para resolver laberintos y problemas donde se requiere buscar y deshacer decisiones.*
 ---
 
-## Descripción del Problema
+## ¿Cómo funciona el proyecto?
 
-Se busca resolver un laberinto representado como una matriz de celdas transitables o no transitables, buscando encontrar la ruta más corta entre un punto de inicio A y uno de destino B.
+Este proyecto permite crear y recorrer grafos no dirigidos desde consola. Funciona completamente en memoria y está compuesto por clases simples (`Nodo`, `Arista`, `Grafo`, y `Main`). 
+
+El flujo del programa es el siguiente:
+
+1. **Inicio**: Al ejecutar el programa, se muestra un menú en consola.
+2. **Agregar Nodos**: El usuario puede ingresar nodos con identificadores únicos.
+3. **Agregar Aristas**: Se conectan dos nodos existentes, creando una relación bidireccional.
+4. **Mostrar Grafo**: Se imprime la lista de adyacencia completa.
+5. **Buscar Rutas**: El usuario elige un algoritmo para buscar camino entre dos nodos:
+   - DFS (profundidad)
+   - BFS (anchura)
+   - Recursiva simple
+   - Recursiva completa
+   - Backtracking
+6. **Resultado**: Se imprime el camino encontrado o un mensaje indicando que no existe.
+7. **Salir**: El usuario puede cerrar el programa desde el menú.
+---
+## Resultados
+![alt text](image-1.png)
+![alt text](image-2.png)
+![alt text](image-3.png)
+![alt text](image-6.png)
+![alt text](image-7.png)
+![alt text](image-8.png)
+![alt text](image-9.png)
+## Conclusiones
+
+- El proyecto muestra la manera de representar y manejar un grafo no dirigido mediante el uso de estructuras de datos elementales   en Java, tales como listas y mapas.
+- Se logró implementar múltiples algoritmos de recorrido, cada uno con fortalezas y limitaciones distintas:
+  - DFS es eficiente para encontrar cualquier camino, pero no garantiza el más corto.
+  - BFS garantiza la ruta más corta, ideal para grafos no ponderados.
+  - Los métodos recursivos permiten estudiar la exploración de rutas con distintas estrategias.
+- La implementación sin frameworks ni bases de datos refuerza el entendimiento del funcionamiento interno de cada algoritmo.
 
 ---
+##  Recomendaciones
 
-## Algoritmos Implementados
-
-Cada algoritmo está implementado en una clase diferente dentro de `solverImpl/`:
-
-* Recursivo (2 direcciones)
-* Recursivo (4 direcciones)
-* Recursivo (4 direcciones + Backtracking)
-* BFS (Breadth-First Search)
-* DFS (Depth-First Search)
-
----
-
-## Interfaz de Usuario (Java Swing)
-
-* Permite seleccionar el tamaño del laberinto.
-* Permite marcar celdas como inicio, fin o muro.
-* Ejecuta el algoritmo seleccionado y muestra visualmente el camino encontrado.
-* Visualiza resultados anteriores en una **tabla**.
-* Opcion de graficar tiempos de ejecución por algoritmo usando **JFreeChart**.
-
----
-
-## Resultados y Archivo de Registro
-
-Los resultados se guardan en un archivo `results.csv`, utilizando un DAO (`AlgorithmResultDAO`) para mantener independencia de la lógica de persistencia.
-
-Desde la interfaz:
-
-* Se puede ver una tabla con: nombre del algoritmo, longitud del camino, tiempo de ejecución.
-* Se puede graficar los tiempos por algoritmo.
-* Se puede limpiar el archivo.
-* No se permite eliminar registros individuales.
-* No se permite registros duplicados. Si se intenta agregar un registro con el mismo nombre de algoritmo, se actualiza el tiempo de ejecución y el numero de celdas.
-
----
-
-## Programación Dinámica y Optimizations
-
-* En futuras versiones se podría incorporar memoización o tabulación para reducir la complejidad temporal en algunos algoritmos recursivos.
-
----
-
-## UML (pendiente agregar imagen)
-
-Aquí se incluirá el diagrama UML con relación entre clases:
-
-* Modelo-Vista-Controlador (MVC)
-* DAO con archivo CSV
-* Estrategia de algoritmos (`MazeSolver` y sus implementaciones)
-
----
-
-## Requisitos para el Informe (README personal del estudiante)
-
-Este archivo `README.md` será reemplazado por tu versión final, la cual debe contener:
-
-1. **Carátula**: logo de la universidad, materia, nombre y correo institucional.
-2. **Descripción del problema.**
-3. **Propuesta de solución**:
-
-   * Marco teórico (DFS, BFS, backtracking, recursión).
-   * Tecnologías utilizadas.
-   * Diagrama UML con su explicación.
-   * Capturas de la interfaz. 2 ejemplos en diferentes laberintos. escojer un algoritmo y mostrar su funcionamiento.
-   * Codigo ejemplo de un algoritmo (puede ser el que tú quieras, pero debe ser uno de los implementados). Codigo comentado y explicado.
+- **Extensión futura**: implementar pesos en las aristas y agregar algoritmos como Dijkstra o A* para buscar rutas óptimas en grafos ponderados.
+- **Interfaz gráfica**: desarrollar una GUI como java Swing para visualizar nodos y rutas gráficamente.
+- **Validaciones**: agregar más validaciones para evitar nodos duplicados, aristas inválidas o entradas incorrectas del usuario.
+- **Pruebas unitarias**: incluir tests automáticos para verificar el comportamiento de los algoritmos frente a distintos escenarios.
 
 
-4. **Conclusiones**: cuál algoritmo es más óptimo y por qué. (POR ESTUDIANTE)
-5. **Recomendaciones y aplicaciones futuras.**
-
----
-
-## Instrucciones Finales para Entrega
-
-1. Ejecuta y prueba el proyecto con varios casos.
-2. Completa el archivo `README.md` con tu informe.
-3. Realiza commit con el mensaje:
-
-   ```
-   Proyecto Final – Estructura de Datos
-   ```
-4. Genera el Jar ejecutable del proyecto.
-   * Asegúrate de que el JAR incluya todas las dependencias necesarias.
-5. Sube el repositorio a GitHub. CODIGO PÚBLICO + README (IMFORME) + JAR.
-6. Entrega la URL del repositorio en el AVAC.
-
----
-
-## Contribuciones
-
-* Pablo Torres – Docente
