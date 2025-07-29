@@ -19,4 +19,14 @@ public class AlgorithmResult {
     public Set<Cell> getVisited() {
         return visited;
     }
+
+    public void setPath(List<Cell> path) {
+        this.path = path;
+    }
+
+    public void setVisited(Set<Cell> visited) {
+        this.visited = visited;
+    }
+
+    
 }

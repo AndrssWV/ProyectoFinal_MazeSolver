@@ -5,11 +5,13 @@ import javax.swing.*;
 import controllers.MazeController;
 import models.Cell;
 import models.CellState;
+import models.SolveResults;
 import models.AlgorithmResult;
 
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.List;
 import java.util.Iterator;
 import java.util.Set;
 
@@ -23,6 +25,9 @@ public class MazePanel extends JPanel {
     private Cell end = null;
     private CellState[][] grid;
 
+    private AlgorithmResult solveBySteps;
+    private String methodBySteps;
+
     public MazePanel(int rows, int cols) {
         controller = new MazeController();
         this.rows = rows;
@@ -31,7 +36,6 @@ public class MazePanel extends JPanel {
         initializeGrid();
         setBackground(Color.WHITE);
         setBorder(BorderFactory.createLineBorder(Color.BLACK));
-
         addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -111,7 +115,7 @@ public class MazePanel extends JPanel {
         this.currentMode = mode;
     }
 
-    public void solveMaze(String method) {
+    private AlgorithmResult getResult(String method) {
         boolean[][] mazeBool = new boolean[rows][cols];
         for (int row = 0; row < rows; row++) {
             for (int col = 0; col < cols; col++) {
@@ -138,13 +142,20 @@ public class MazePanel extends JPanel {
             default:
                 break;
         }
+        return solve;
+    }
+
+    public void solveMaze(String method) {
+        clearMaze();
+        solveBySteps =  null;
+        methodBySteps = null;
+        AlgorithmResult solve = getResult(method);
         setPath(solve);
     }
 
     private void setPath(AlgorithmResult solve) {
-        int tiempoDeEsperaMs = 200;
         Iterator<Cell> visited = solve.getVisited().iterator();
-        Timer visitTimer = new Timer(tiempoDeEsperaMs, e -> {
+        Timer visitTimer = new Timer(100, e -> {
             if (visited.hasNext()) {
                 Cell c = visited.next();
                 if (grid[c.row][c.col] != CellState.START && grid[c.row][c.col] != CellState.END) {
@@ -158,7 +169,7 @@ public class MazePanel extends JPanel {
                     return;
                 }
                 Iterator<Cell> path = solve.getPath().iterator();
-                Timer pathTimer = new Timer(tiempoDeEsperaMs, ev -> {
+                Timer pathTimer = new Timer(50, ev -> {
                     if (path.hasNext()) {
                         Cell c = path.next();
                         if (grid[c.row][c.col] != CellState.START && grid[c.row][c.col] != CellState.END) {
@@ -175,8 +186,44 @@ public class MazePanel extends JPanel {
         visitTimer.start();
     }
 
-    public void stepSolve() {
-        //solveMaze();
+    public void solveMazeBySteps(String method) {
+        if (solveBySteps != null) {
+            if (method == methodBySteps) {
+                if (solveBySteps.getVisited().size()>0) {
+                    Set<Cell> visited = solveBySteps.getVisited();
+                    Cell step = visited.iterator().next();
+                    visited.remove(step);
+                    solveBySteps.setVisited(visited);
+                    if (grid[step.row][step.col] != CellState.START && grid[step.row][step.col] != CellState.END) {
+                        grid[step.row][step.col] = CellState.VISITED;
+                        repaint();
+                    }
+                } else if (solveBySteps.getPath().size()>0) {
+                    List<Cell> path = solveBySteps.getPath();
+                    Cell step = path.removeFirst();
+                    solveBySteps.setPath(path);
+                    if (grid[step.row][step.col] != CellState.START && grid[step.row][step.col] != CellState.END) {
+                        grid[step.row][step.col] = CellState.PATH;
+                        repaint();
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "Camino se ha completado", "info", JOptionPane.ERROR_MESSAGE);
+                    solveBySteps = null;
+                    methodBySteps = null;
+                    return;
+                }
+            } else {
+                clearMaze();
+                solveBySteps = getResult(method);
+                methodBySteps = method;
+                solveMazeBySteps(method);
+            }
+        } else {
+            clearMaze();
+            solveBySteps = getResult(method);
+            methodBySteps = method;
+            solveMazeBySteps(method);
+        }
     }
 
     public void clearMaze() {

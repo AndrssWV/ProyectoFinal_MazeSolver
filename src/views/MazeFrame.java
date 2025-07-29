@@ -149,7 +149,7 @@ public class MazeFrame extends JFrame {
                         mazePanel.solveMaze(methods.getSelectedItem().toString());
                         break;
                     case "Paso a paso":
-                        mazePanel.stepSolve();
+                        mazePanel.solveMazeBySteps(methods.getSelectedItem().toString());
                         break;
                     case "Limpiar":
                         mazePanel.clearMaze();
