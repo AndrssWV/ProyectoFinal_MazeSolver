@@ -30,7 +30,7 @@ public class MazeSolverRecursivoCompleto implements MazeSolver {
         this.end = end;
         if (grid == null || grid.length == 0) return new AlgorithmResult(path, visited);
         if (findPath(start)) return new AlgorithmResult(path, visited);
-        return new AlgorithmResult(new ArrayList<>(), visited);
+        return new AlgorithmResult(new ArrayList<>(), new LinkedHashSet<>());
     }
 
     private boolean findPath(Cell current) {

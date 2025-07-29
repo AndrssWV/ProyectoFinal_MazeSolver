@@ -63,7 +63,7 @@ public class MazeFrame extends JFrame {
         acercaDe.addActionListener(e -> {
             JOptionPane.showMessageDialog(
                 this,
-                "Proyecto Final - Maze Solver\nAutor: Tu Nombre\n2025",
+                "Desarrollado por:\n - Sebastian Lopez\n - Andres Villata\n - Jamileth Kumpanam\n - Valeria Guaman",
                 "Acerca de",
                 JOptionPane.INFORMATION_MESSAGE
             );

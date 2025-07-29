@@ -37,16 +37,16 @@ public class MazeSolverRecursivoCompletoBT implements MazeSolver {
         if (!isInMaze(current) || !isValid(current)) return false;
         visited.add(current);
         if (current.equals(end)) {
-            path.add(current);
             return true;
         }
-        for (int[] dir : directions) {            
-            if (findPath(new Cell(current.row + dir[0], current.col + dir[1]))) {
+        for (int[] dir : directions) {
+            Cell next = new Cell(current.row + dir[0], current.col + dir[1]);
+            if (findPath(next)) {
                 path.add(current);
                 return true;
             }
         }
-        path.removeLast();
+        if (!path.isEmpty() && path.get(path.size()-1).equals(current)) path.remove(path.size()-1);
         return false;
     }
 
