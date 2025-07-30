@@ -191,7 +191,7 @@ public class MazePanel extends JPanel {
 
                 // Dibujar el fondo de la celda con el color correspondiente a su estado
                 g.setColor(grid[row][col].getColor());
-                g.fillRect(drawCol, drawRow, cellw, cellw);
+                g.fillRect(drawCol, drawRow, cellw, cellh);
 
                 // Dibujar el borde de la celda
                 g.setColor(Color.LIGHT_GRAY);
